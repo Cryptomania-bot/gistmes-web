@@ -82,7 +82,7 @@ function HomePage() {
               <div className="avatar">
                 <div className="w-10 rounded-full border-2 border-base-100">
                   <img
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+                    src="https://ui-avatars.com/api/?name=User+1&background=random"
                     alt="User avatar"
                   />
                 </div>
@@ -90,7 +90,7 @@ function HomePage() {
               <div className="avatar">
                 <div className="w-10 rounded-full border-2 border-base-100">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+                    src="https://ui-avatars.com/api/?name=User+2&background=random"
                     alt="User avatar"
                   />
                 </div>
@@ -98,7 +98,7 @@ function HomePage() {
               <div className="avatar">
                 <div className="w-10 rounded-full border-2 border-base-100">
                   <img
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+                    src="https://ui-avatars.com/api/?name=User+3&background=random"
                     alt="User avatar"
                   />
                 </div>
@@ -106,7 +106,7 @@ function HomePage() {
               <div className="avatar">
                 <div className="w-10 rounded-full border-2 border-base-100">
                   <img
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+                    src="https://ui-avatars.com/api/?name=User+4&background=random"
                     alt="User avatar"
                   />
                 </div>
@@ -148,7 +148,7 @@ function HomePage() {
         </div>
       </div>
       {/* RIGHT SIDE */}
-      <div className="hidden lg:flex flex-1 relative bg-base-200 items-center justify-center overflow-hidden">
+      <div className="hidden md:flex flex-1 relative bg-base-200 items-center justify-center overflow-hidden">
         {/* Grid Pattern */}
         <div
           className="absolute inset-0"
