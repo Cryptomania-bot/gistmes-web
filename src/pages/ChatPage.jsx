@@ -72,6 +72,10 @@ function ChatPage() {
     chats.find((c) => c._id === activeChatId) ||
     (startChatMutation.data?._id === activeChatId ? startChatMutation.data : null);
 
+  // If we are currently starting a chat, we might not have the participant data in chats yet
+  // but we should have it in startChatMutation.data
+  const currentParticipant = activeChat?.participant || null;
+
   return (
     <div className="h-screen bg-base-100 text-base-content flex">
       {/* Sidebar */}
@@ -127,7 +131,7 @@ function ChatPage() {
       <div className="flex-1 flex flex-col">
         {activeChatId && activeChat ? (
           <>
-            <ChatHeader participant={activeChat.participant} chatId={activeChatId} />
+            <ChatHeader participant={currentParticipant} chatId={activeChatId} />
 
             {/* messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4">

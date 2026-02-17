@@ -6,7 +6,8 @@ import { useUsers } from "../hooks/useUsers";
 export function NewChatModal({ onStartChat, isPending, isOpen, onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { onlineUsers } = useSocketStore();
-  const { data: allUsers = [] } = useUsers();
+  const { data: searchResults = [], isLoading } = useUsers(searchQuery);
+
   const isOnline = (id) => onlineUsers.has(id);
 
   const handleStartChat = (participantId) => {
@@ -15,11 +16,6 @@ export function NewChatModal({ onStartChat, isPending, isOpen, onClose }) {
     onClose();
   };
 
-  const searchResults = allUsers.filter((u) => {
-    if (!searchQuery.trim()) return false;
-    const query = searchQuery.toLowerCase();
-    return u.name?.toLowerCase().includes(query) || u.email?.toLowerCase().includes(query);
-  });
 
   return (
     <dialog className={`modal ${isOpen ? "modal-open" : ""}`}>
@@ -40,7 +36,11 @@ export function NewChatModal({ onStartChat, isPending, isOpen, onClose }) {
           />
         </div>
         <div className="max-h-72 overflow-y-auto">
-          {searchResults.length === 0 ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <span className="loading loading-spinner loading-md text-primary" />
+            </div>
+          ) : searchResults.length === 0 ? (
             <div className="py-8 text-center text-base-content/60 text-sm">
               {searchQuery ? "No users found" : "Start typing to search"}
             </div>
