@@ -10,8 +10,10 @@ function useUserSync() {
     mutate: syncUser,
     isPending,
     isSuccess,
+    isError,
   } = useMutation({
     mutationFn: async () => {
+      console.log("Starting user sync...");
       const token = await getToken();
       const res = await api.post(
         "/auth/callback",
@@ -22,14 +24,17 @@ function useUserSync() {
       );
       return res.data;
     },
+    onSuccess: (data) => console.log("User sync successful:", data),
+    onError: (error) => console.error("User sync failed:", error),
   });
 
   useEffect(() => {
-    if (isSignedIn && !isPending && !isSuccess) {
+    // Only attempt sync if signed in, not already syncing, not already succeeded, and not in an error state
+    if (isSignedIn && !isPending && !isSuccess && !isError) {
       syncUser();
     }
-  }, [isSignedIn, syncUser, isPending, isSuccess]);
+  }, [isSignedIn, syncUser, isPending, isSuccess, isError]);
 
-  return { isSynced: isSuccess, isSyncing: isPending };
+  return { isSynced: isSuccess, isSyncing: isPending, error: isError };
 }
 export default useUserSync;
