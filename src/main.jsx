@@ -11,7 +11,11 @@ import { BrowserRouter } from "react-router";
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
+  const errorMsg = "VITE_CLERK_PUBLISHABLE_KEY is missing in your environment variables. Please add it to Netlify settings.";
+  console.error(errorMsg);
+  // Optional: render a simple error message to the DOM so user sees something
+  document.body.innerHTML = `<div style="padding: 20px; font-family: sans-serif; color: red;"><h1>Configuration Error</h1><p>${errorMsg}</p></div>`;
+  throw new Error(errorMsg);
 }
 
 const queryClient = new QueryClient();
