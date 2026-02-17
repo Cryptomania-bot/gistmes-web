@@ -68,7 +68,9 @@ function ChatPage() {
     }, 2000);
   };
 
-  const activeChat = chats.find((c) => c._id === activeChatId);
+  const activeChat =
+    chats.find((c) => c._id === activeChatId) ||
+    (startChatMutation.data?._id === activeChatId ? startChatMutation.data : null);
 
   return (
     <div className="h-screen bg-base-100 text-base-content flex">
